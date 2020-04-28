@@ -13,13 +13,13 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|group_name|strings|null: false|
-|user_name|strings|null: false|
+|name|strings|null: false|
+
 
 ### Association
-- belongs_to :groups_users
-- has_many :user
-- has_many :message
+- has_many :groups_users
+- has_many :users
+- has_many :messages
 
 ## userテーブル
 
@@ -30,9 +30,9 @@
 |nick_name|strings|null: false|
 
 ### Association
-- belongs_to :groups_users
-- has_many :user
-- has_many :message
+- has_many :groups_users
+- has_many :users
+- has_many :messages
 
 ## tweetsテーブル
 |Column|Type|Options|
@@ -40,8 +40,7 @@
 |image|text||
 |text|text||
 |user_id|integer|null: false, foreign_key: true|
-
+|group_id|integer|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
 - belongs_to :group
-- belongs_to :groups_users

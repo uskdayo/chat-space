@@ -1,0 +1,33 @@
+-# ＜チャット画面＞
+.main_chat
+  .main_chat__groupinfo
+    .main_chat__groupinfo__topitem
+      .main_chat__groupinfo__topitem__group
+        test
+      .main_chat__groupinfo__topitem__member
+        Member:masa
+    = link_to "#",class: "main_chat__groupinfo__edit" do
+      Edit
+  .main_chat__messagelist
+    .main_chat__messagelist__mainitem
+      .main_chat__messagelist__mainitem__name
+        masa
+      .main_chat__messagelist__mainitem__date
+        2020/05/01(fri)17:28:50
+    .main_chat__messagelist__message
+      おはよう
+    .main_chat__messagelist__mainitem
+      .main_chat__messagelist__mainitem__name
+        masa
+      .main_chat__messagelist__mainitem__date
+        2020/05/01(fri)17:28:50
+    .main_chat__messagelist__message
+      おはよう
+  .main_chat__messageform
+    .main_chat__messageform__message
+      %input{type: "text",class: "main_chat__messageform__message__text",placeholder: "type a message"}
+      %label{class: "main_chat__messageform__message__icon"}
+        = icon('fas', 'image')
+        %input{class:"hide",type: "file"}
+    = link_to "#",class: "main_chat__messageform__send" do
+      Send

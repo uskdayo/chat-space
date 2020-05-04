@@ -5,20 +5,18 @@
       .side_bar__username__topitem__name
         = current_user.name
       .side_bar__username__topitem__icons
-        = link_to "#",class: "icon" do
-          = icon('fas','edit')
+        = link_to new_group_path do
+          = icon('fas','edit',class: 'icon')
           %span<>
         = link_to edit_user_path(current_user) do
           = icon('fas', 'cog', class: 'icon')
 
   .side_bar__grouplist
-    .side_bar__grouplist__sideitem
-      .side_bar__grouplist__sideitem__group
-        techcamp
-      .side_bar__grouplist__sideitem__message
-        まだメッセージがありません
-    .side_bar__grouplist__sideitem
-      .side_bar__grouplist__sideitem__group
-        techcamp
-      .side_bar__grouplist__sideitem__message
-        まだメッセージがありません
+    - current_user.groups.each do |group|
+      .group
+        = link_to '#' do
+          .group__name
+            =group.name
+          .group__message
+            まだメッセージがありません
+ 

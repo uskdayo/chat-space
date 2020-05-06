@@ -3,31 +3,22 @@
   .main_chat__groupinfo
     .main_chat__groupinfo__topitem
       .main_chat__groupinfo__topitem__group
-        test
+        =@group.name
       .main_chat__groupinfo__topitem__member
-        Member:masa
-    = link_to "#",class: "main_chat__groupinfo__edit" do
-      Edit
-  .main_chat__messagelist
-    .main_chat__messagelist__mainitem
-      .main_chat__messagelist__mainitem__name
-        masa
-      .main_chat__messagelist__mainitem__date
-        2020/05/01(fri)17:28:50
-    .main_chat__messagelist__message
-      おはよう
-    .main_chat__messagelist__mainitem
-      .main_chat__messagelist__mainitem__name
-        masa
-      .main_chat__messagelist__mainitem__date
-        2020/05/01(fri)17:28:50
-    .main_chat__messagelist__message
-      おはよう
-  .main_chat__messageform
-    .main_chat__messageform__message
-      %input{type: "text",class: "main_chat__messageform__message__text",placeholder: "type a message"}
-      %label{class: "main_chat__messageform__message__icon"}
+        Member:
+        - @group.users.each do |member|
+          =member.name
+    .main_chat__groupinfo__edit
+      = link_to edit_group_path(@group) do
+        Edit
+  .main_chat__messages
+    = render @messages
+  .main_chat__form
+    = form_for [@group, @message] do |f|
+      -# %input{type: "text",class: "main_chat__form__text",placeholder: "type a message"}
+      = f.text_field :content, class: "main_chat__form__text", placeholder: "type a message"
+      %label{class: "main_chat__form__icon"}
         = icon('fas', 'image')
-        %input{class:"hide",type: "file"}
-    = link_to "#",class: "main_chat__messageform__send" do
-      Send
+        -# %input{class:"hide",type: "file"}
+        = f.file_field :image, class:"hide"
+      = f.submit 'Send', class: 'main_chat__form__send'

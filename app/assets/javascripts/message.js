@@ -2,7 +2,7 @@ $(function(){
   function buildHTML(message){
     if ( message.image ) {
       var html =
-       `<div class="main_chat__message">
+       `<div class="main_chat__message" data-message-id=${message.id}>
           <div class="main_chat__message__mainitem">
             <div class="main_chat__message__mainitem__name">
               ${message.user_name}
@@ -21,7 +21,7 @@ $(function(){
       return html;
     } else {
       var html =
-     `<div class="main_chat__message">
+     `<div class="main_chat__message" data-message-id=${message.id}>
         <div class="main_chat__message__mainitem">
           <div class="main_chat__message__mainitem__name">
             ${message.user_name}
@@ -64,5 +64,32 @@ $(function(){
       $(".main_chat__form__send").removeAttr("disabled");
     });
   });
+
+  var reloadMessages = function() {
+    var last_message_id = $('.main_chat__message:last').data("message-id");
+    $.ajax({
+      url: "api/messages",
+      type: 'get',
+      dataType: 'json',
+      data: {id: last_message_id}
+    })
+    .done(function(messages) {
+      console.log(messages);
+      if (messages.length !== 0) {
+      var insertHTML = '';
+      $.each(messages, function(i, message) {
+        insertHTML += buildHTML(message)
+      });
+      $('.main_chat__messages').append(insertHTML);
+      $('.main_chat__messages').animate({ scrollTop: $('.main_chat__messages')[0].scrollHeight});
+    }
+    })
+    .fail(function() {
+      alert('error');
+    });
+  };
+  if (document.location.href.match(/\/groups\/\d+\/messages/)) {
+    setInterval(reloadMessages, 7000);
+  }
 });
 

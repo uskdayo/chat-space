@@ -13,5 +13,5 @@ CarrierWave.configure do |config|
   }
 
   config.fog_directory  = 'katochatspace'
-  config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/katochatspacevim ~/.zshrc'
+  config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/katochatspace'
 end

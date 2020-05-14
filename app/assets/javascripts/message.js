@@ -2,17 +2,17 @@ $(function(){
   function buildHTML(message){
     if ( message.image ) {
       var html =
-       `<div class="main_chat__message" data-message-id=${message.id}>
-          <div class="main_chat__message__mainitem">
-            <div class="main_chat__message__mainitem__name">
+       `<div class="main_chat__messages__message" data-message-id=${message.id}>
+          <div class="main_chat__messages__message__mainitem">
+            <div class="main_chat_messages___message__mainitem__name">
               ${message.user_name}
             </div> 
-            <div class="main_chat__message__mainitem__date">
+            <div class="main_chat__messages__message__mainitem__date">
               ${message.created_at}
             </div>
           </div>
-          <div class="main_chat__message__text">
-            <p class="main_chat__message__text__content">
+          <div class="main_chat__messages__text">
+            <p class="main_chat__messages__text__content">
               ${message.content}
             </p>
           </div> 
@@ -21,17 +21,17 @@ $(function(){
       return html;
     } else {
       var html =
-     `<div class="main_chat__message" data-message-id=${message.id}>
-        <div class="main_chat__message__mainitem">
-          <div class="main_chat__message__mainitem__name">
+     `<div class="main_chat__messages__message" data-message-id=${message.id}>
+        <div class="main_chat__messages__message__mainitem">
+          <div class="main_chat__messages__message__mainitem__name">
             ${message.user_name}
           </div> 
-          <div class="main_chat__message__mainitem__date">
+          <div class="main_chat__messages__message__mainitem__date">
             ${message.created_at}
           </div>
         </div>
-        <div class="main_chat__message__text">
-          <p class="main_chat__message__text__content">
+        <div class="main_chat__messages__text">
+          <p class="main_chat__messages__text__content">
             ${message.content}
           </p>
         </div> 
@@ -66,7 +66,7 @@ $(function(){
   });
 
   var reloadMessages = function() {
-    var last_message_id = $('.main_chat__message:last').data("message-id");
+    var last_message_id = $('.main_chat__messages__message:last').data("message-id");
     $.ajax({
       url: "api/messages",
       type: 'get',
